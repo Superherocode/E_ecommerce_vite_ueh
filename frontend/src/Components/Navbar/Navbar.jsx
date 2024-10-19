@@ -14,7 +14,7 @@ import { ShopContext } from "../../Context/ShopContext";
 
 
 
-const Navbar = () => {
+const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState("shop");
   const {getTotalCartItems} = useContext(ShopContext);
@@ -59,9 +59,11 @@ const Navbar = () => {
           <li onClick={() => setMenu("khuyenmai")} className={menu === "khuyenmai" ? "active" : ""}><Link to='/khuyenmai'>Khuyễn mãi</Link></li>
           <li onClick={() => setMenu("tintuc")} className={menu === "tintuc" ? "active" : ""}><Link to='/tintuc'>Tin tức</Link></li>
           <li onClick={() => setMenu("lienhe")} className={menu === "lienhe" ? "active" : ""}><Link to='/lienhe'>Liên hệ</Link></li>
-          <li onClick={() => setMenu("taikhoan")} className={menu === "taikhoan" ? "active" : ""}><Link to='/taikhoan'>Tài khoản</Link></li>
+          {/* <li onClick={() => setMenu("taikhoan")} className={menu === "taikhoan" ? "active" : ""}><Link to='/taikhoan'>Tài khoản</Link></li> */}
+          <li onClick={() => setShowLogin(true)} className="px-3 py-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23] ">Sign in</li>
         </ul>
         <div className="nav-icon">
+          <button ></button>
           <img src={vector2} alt="" />
           <img src={vector3} alt="" />
           <div className="nav-count1">0</div>

@@ -7,12 +7,12 @@ import { ShopContext } from '../../Context/ShopContext';
 const ProductDisplay = (props) => {
 
     const { product } = props;
-    const { addToCart } = useContext(ShopContext);
+    const { addToCart, url } = useContext(ShopContext);
   return (
     <div className='productdisplay'>
       <div className="productdisplay-left">
         <div className="productdisplay-img">
-            <img className='productdisplay-main-img' src={product.image} alt="" />
+            <img className='productdisplay-main-img' src={url+"/images/"+ product.image} alt="" />
         </div>
         <div className="productdisplay-img-list">
           <img src={product.image} alt="" />
@@ -36,10 +36,7 @@ const ProductDisplay = (props) => {
           <div className="productdisplay-right-price-new">${product.new_price}</div>
         </div>
         <div className="productdisplay-right-description">
-          Kéo học sinh Loại kéo nhỏ dành cho học sinh làm thủ công, được làm bằng kim loại không
-          gỉ, mũi kéo tròn để bảo vệ an toàn cho trẻ khi sử dụng. Tay cầm bằng nhựa giúp cắt nhẹ
-          nhàng, không đau tay. hai lưỡi đồng được giữ áp sát vào nhau một cách linh hoạt nhằm để
-          giữ hai lưỡi kéo tại đúng vị trí, cho phép chúng được ép sát lại với nhau.
+          {product.description}
         </div>
         <div className="productdisplay-right-size">
           <h1>Select Size</h1>
