@@ -1,0 +1,40 @@
+.homslide-section1 {
+  padding: 50px 10%;
+  display: flex;
+
+}
+
+.homeslide-1{
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.homeslide-1 img{ 
+  width: 370px;
+}
+
+.homeslide-section2 {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 50px;
+}
+
+.homeslide-icon{
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content if needed */
+  gap: 10px ;
+}
+
+.homeslide-icon img{
+  width: 29px;
+  height: 29px;
+  
+}
+
+.homeslide-icon .text1{
+  font-weight: 700;
+  color: #D37235;
+}

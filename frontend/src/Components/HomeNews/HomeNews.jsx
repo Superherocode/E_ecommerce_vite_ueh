@@ -3,7 +3,9 @@ import './HomeNews.css'
 
 const HomeNews = () => {
   return (
-    <div>HomeNews</div>
+    <div>
+      
+    </div>
   )
 }
 
