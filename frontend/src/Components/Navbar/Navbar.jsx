@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import './Navbar.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 import logo from '../Assets/Logo_UEH_xanh.png'
@@ -11,14 +11,22 @@ import vector4 from '../Assets/Vector_4.png'
 import vector5 from '../Assets/Vector_5.png'
 import vector from '../Assets/Vector.png'
 import { ShopContext } from "../../Context/ShopContext";
+import { assets } from "../Assets/Assets_food/assets";
 
 
 
 const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState("shop");
-  const {getTotalCartItems} = useContext(ShopContext);
+  const {getTotalCartItems, token, setToken} = useContext(ShopContext);
 
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/")
+  }
   return (
     <div className="navbar">
     <div className="navbar1">
@@ -60,7 +68,16 @@ const Navbar = ({ setShowLogin }) => {
           <li onClick={() => setMenu("tintuc")} className={menu === "tintuc" ? "active" : ""}><Link to='/tintuc'>Tin tức</Link></li>
           <li onClick={() => setMenu("lienhe")} className={menu === "lienhe" ? "active" : ""}><Link to='/lienhe'>Liên hệ</Link></li>
           {/* <li onClick={() => setMenu("taikhoan")} className={menu === "taikhoan" ? "active" : ""}><Link to='/taikhoan'>Tài khoản</Link></li> */}
-          <li onClick={() => setShowLogin(true)} className="px-3 py-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23] ">Sign in</li>
+          {!token?<li onClick={() => setShowLogin(true)} className="px-3 py-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23] ">Sign in</li>
+          :<div className="navbar-profile">
+             <img src={assets.profile_icon} alt="" />
+             <ul className="nav-profile-dropdown">
+              <li><img src={assets.bag_icon} alt="" /><span>Đơn hàng</span></li>
+              <hr />
+              <li onClick={logout}><img src={assets.logout_icon} alt="" />Đăng xuất</li>
+             </ul>
+            </div>}
+          
         </ul>
         <div className="nav-icon">
           <button ></button>

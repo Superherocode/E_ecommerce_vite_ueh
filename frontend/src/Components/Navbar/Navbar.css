@@ -9,12 +9,12 @@
   justify-content: space-between;
   margin: 0 196px;
   padding: 10px 0;
-  
+
 }
 
-.navbar1 img{
+.navbar1 img {
   display: inline-block;
-} 
+}
 
 .navbar1-contact {
   display: flex;
@@ -61,7 +61,7 @@
 }
 
 
-.nav-menu li:hover  {
+.nav-menu li:hover {
   color: #D37235;
   cursor: pointer;
 }
@@ -69,7 +69,8 @@
 .nav-menu li a {
   text-decoration: none;
   color: black;
-  transition: color 0.3s ease; /* Thêm hiệu ứng chuyển đổi màu mượt */
+  transition: color 0.3s ease;
+  /* Thêm hiệu ứng chuyển đổi màu mượt */
 }
 
 .nav-menu .active {
@@ -117,7 +118,44 @@
   z-index: 1;
 }
 
-  /* display: flex;
+.navbar-profile {
+  position: relative;
+}
+
+.nav-profile-dropdown {
+  position: absolute; 
+  display: none;
+  left: 0;
+  z-index: 1;
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 126px;
+  background-color: #fff2ef;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #D67B42;
+  outline: 2px solid white;
+  list-style: none;
+}
+
+.nav-profile-dropdown li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-profile-dropdown li img {
+  width: 20px;
+}
+
+/* display: flex;
   justify-content: center;
   align-items: center;
   margin-top: -35px;
