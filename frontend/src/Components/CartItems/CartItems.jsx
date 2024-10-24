@@ -7,7 +7,12 @@ import { ShopContext } from '../../Context/ShopContext'
 
 const CartItems = () => {
 
-  const {getTotalAmount, all_product, cartItems, removeFromCart, addToCart } = useContext(ShopContext)
+  const { all_product, cartItems, removeFromCart, addToCart, url, getTotalAmount } = useContext(ShopContext)
+
+  if (!cartItems) {
+    return <p>Giỏ hàng không tồn tại.</p>;
+  }
+  
 
   return (
     <div className='cartitems'>
@@ -22,11 +27,11 @@ const CartItems = () => {
         <p>Xóa</p>
       </div>
       <hr />
-      {all_product.map((e) => {
+      {all_product.map((e, i) => {
         if (cartItems[e._id] > 0) {
-          return <div>
+          return <div key={e._id}>
             <div className="cartitems-format cartitems-format-main">
-              <img src={e.image} alt="" className='carticon-product-icon' />
+              <img src={url +"/images/"+ e.image} alt="" className='carticon-product-icon' />
               <p>{e.name}</p>
               <p>{e.new_price}</p>
               <button className='cartitems-quantity'>{cartItems[e._id]}</button>
@@ -45,7 +50,8 @@ const CartItems = () => {
           <div>
             <div className="cartitems-total-item">
               <p>Subtatal</p>
-              <p>${getTotalAmount()}</p>
+              <p>${0}</p>
+              {/*  */}
             </div>
             <hr />
             <div className="cartitems-total-item">
@@ -54,7 +60,8 @@ const CartItems = () => {
             </div>
             <div className="cartitems-total-item">
               <p>Total</p>
-              <p>${getTotalAmount()}</p>
+              <p>$</p> 
+              {/* chỗ này thiếu tính tổng số tiền nè nha */}
             </div>
           </div>
           <button>Thanh toán</button>

@@ -1,0 +1,82 @@
+.san-pham-section {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.san-pham-title {
+  font-size: 28px;
+  color: #e67e22; /* Màu cam tương tự hình ảnh */
+  margin-bottom: 10px;
+}
+
+.san-pham-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.san-pham-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.san-pham-item {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.san-pham-item:hover {
+  transform: translateY(-5px); /* Hiệu ứng khi rê chuột */
+}
+
+.san-pham-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.san-pham-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.san-pham-price {
+  font-size: 14px;
+  color: #888;
+}
+
+.banner {
+  height: 500px;
+  padding: 60px 0px;
+}
+.banner > img {
+  object-fit: cover;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .san-pham-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .san-pham-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -37,27 +37,27 @@ const HomeCategory = () => {
           </div>
         </div> */}
 
-        <div class="row mt-5">
-          <div class="col">
-            <div class="image_cate1">
+        <div className="row mt-5">
+          <div className="col">
+            <div className="image_cate1">
               <img src={dmfood} alt="" />
-              <button class="button_cate">UEH FOOD</button>
+              <button className="button_cate">UEH FOOD</button>
             </div>
           </div>
-          <div class="col">
-            <div class="image_cate mb-4">
-              <img class="img_cate" src={dmtt} alt="" />
-              <button class="button_cate2">THỜI TRANG</button>
+          <div className="col">
+            <div className="image_cate mb-4">
+              <img className="img_cate" src={dmtt} alt="" />
+              <button className="button_cate2">THỜI TRANG</button>
             </div>
-            <div class="image_cate">
-              <img class="img_cate" src={dmdcht} alt="" />
-              <button class="button_cate2">DỤNG CỤ HỌC TẬP</button>
+            <div className="image_cate">
+              <img className="img_cate" src={dmdcht} alt="" />
+              <button className="button_cate2">DỤNG CỤ HỌC TẬP</button>
             </div>
           </div>
-          <div class="col">
-            <div class="image_cate1">
+          <div className="col">
+            <div className="image_cate1">
               <img src={dmqln} alt="" />
-              <button class="button_cate">QUÀ LƯU NIỆM</button>
+              <button className="button_cate">QUÀ LƯU NIỆM</button>
             </div>
           </div>
         </div>

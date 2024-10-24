@@ -15,10 +15,10 @@ const ProductDisplay = (props) => {
             <img className='productdisplay-main-img' src={url+"/images/"+ product.image} alt="" />
         </div>
         <div className="productdisplay-img-list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={url+"/images/"+ product.image} alt="" />
+          <img src={url+"/images/"+ product.image} alt="" />
+          <img src={url+"/images/"+ product.image} alt="" />
+          <img src={url+"/images/"+ product.image} alt="" />
         </div>
       </div>
       <div className="productdisplay-right">
@@ -32,8 +32,8 @@ const ProductDisplay = (props) => {
           <span>(122 Đánh giá)</span>
         </div>
         <div className="productdisplay-right-prices">
-          <div className="productdisplay-right-price-old">${product.old_price}</div>
-          <div className="productdisplay-right-price-new">${product.new_price}</div>
+          <div className="productdisplay-right-price-old">{product.old_price},000 VNĐ</div>
+          <div className="productdisplay-right-price-new">${product.new_price},000 VNĐ</div>
         </div>
         <div className="productdisplay-right-description">
           {product.description}
@@ -57,7 +57,7 @@ const ProductDisplay = (props) => {
                 <button id="decrement">-</button>
               </div>
             </div>
-            <button className="add-to-cart" onClick={()=>{addToCart(product.id)}}>THÊM GIỎ HÀNG</button>
+            <button className="add-to-cart" onClick={()=>{addToCart(product._id)}}>THÊM GIỎ HÀNG</button>
             <div className="heart">
                 <i className="fa-regular fa-heart"></i>
             </div>
