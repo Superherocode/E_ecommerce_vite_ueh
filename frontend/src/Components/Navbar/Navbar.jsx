@@ -66,13 +66,13 @@ const Navbar = ({ setShowLogin }) => {
           </li>
           <li onClick={() => setMenu("khuyenmai")} className={menu === "khuyenmai" ? "active" : ""}><Link to='/khuyenmai'>Khuyễn mãi</Link></li>
           <li onClick={() => setMenu("tintuc")} className={menu === "tintuc" ? "active" : ""}><Link to='/tintuc'>Tin tức</Link></li>
-          
+          <li onClick={() => setMenu("lienhe")} className={menu === "lienhe" ? "active" : ""}><Link to='/lienhe'>Liên hệ</Link></li>
           {/* <li onClick={() => setMenu("taikhoan")} className={menu === "taikhoan" ? "active" : ""}><Link to='/taikhoan'>Tài khoản</Link></li> */}
           {!token?<li onClick={() => setShowLogin(true)} className="px-3 py-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23] ">Sign in</li>
           :<div className="navbar-profile">
              <img src={assets.profile_icon} alt="" />
              <ul className="nav-profile-dropdown">
-              <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon} alt="" /><span>Đơn hàng</span></li>
+              <li><img src={assets.bag_icon} alt="" /><span>Đơn hàng</span></li>
               <hr />
               <li onClick={logout}><img src={assets.logout_icon} alt="" />Đăng xuất</li>
              </ul>

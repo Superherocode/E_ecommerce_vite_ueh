@@ -11,9 +11,6 @@ import Contact from './Pages/Contact';
 import LoginSignup from './Pages/LoginSignup';
 import Cart from './Pages/Cart';
 import LoginPopup from './Components/LoginPopup/LoginPopup';
-import PlaceOrder from './Pages/PlaceOrder';
-import Verify from './Pages/Verify';
-import MyOrders from './Pages/MyOrders';
 
 
 const App = () => {
@@ -34,9 +31,6 @@ const App = () => {
         <Route path='/lienhe' element={<Contact/>}/>
         <Route path='/taikhoan' element={<LoginSignup/>}/>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path='/order' element={<PlaceOrder/>}/>
-        <Route path='/verify' element={<Verify/>} />
-        <Route path='/myorders' element={<MyOrders/>}/>
       </Routes>
       <Footer/>
     </div>

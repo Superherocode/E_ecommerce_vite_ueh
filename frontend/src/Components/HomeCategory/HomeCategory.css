@@ -10,7 +10,7 @@
   margin-bottom: 10px;
 }
 
-/* .danh-muc-subtitle {
+.danh-muc-subtitle {
   font-size: 16px;
   color: #666;
   margin-bottom: 30px;
@@ -18,47 +18,4 @@
 
 .danh-muc-grid{
   display: flex;
-} */
-
-
-/* thái */
-
-.image_cate:hover > img ,.image_cate1:hover > img{
-  transform: scale(1.1);
-  transition: .5s;
-  cursor: pointer;
-}
-.image_cate1 {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 100%;
-  flex-direction: column;
-}
-.button_cate {
-  background-color: #015F69;
-  height: 30px;
-  width: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  border-radius: 50px;
-}
-.image_cate {
-  position: relative;
-}
-.button_cate2 {
-  position: absolute;
-  background-color: #015F69;
-  height: 30px;
-  width: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  border-radius: 50px;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }

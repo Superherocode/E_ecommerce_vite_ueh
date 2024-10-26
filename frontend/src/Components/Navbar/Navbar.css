@@ -1,16 +1,14 @@
 .navbar {
   width: 100%;
   box-shadow: 0 1px 3px -2px black;
-  padding: 0 !important;
 }
 
 .navbar1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* Đảm bảo phần navbar2 mở rộng toàn bộ màn hình */
-  padding: 1px 5%; /* Sử dụng padding thay vì margin để giữ nội dung không sát cạnh */
-
+  margin: 0 196px;
+  padding: 10px 0;
 
 }
 
@@ -35,8 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 5%; /* Sử dụng padding để căn chỉnh nội dung trong */
-  width: 100%; /* Đảm bảo phần navbar2 mở rộng toàn bộ màn hình */
+  padding: 12px 8%;
   border-top: 1px solid #DEE2E6;
 }
 
@@ -143,10 +140,6 @@
   border: 1px solid #D67B42;
   outline: 2px solid white;
   list-style: none;
-}
-
-.nav-profile-dropdown a {
-  text-emphasis: none;
 }
 
 .nav-profile-dropdown li {
