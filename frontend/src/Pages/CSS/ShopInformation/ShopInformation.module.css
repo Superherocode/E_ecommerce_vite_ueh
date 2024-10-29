@@ -8,6 +8,7 @@
   color: white;
   display: flex;
   flex-direction: column;
+  text-align: center;
   justify-content: center; /* Căn giữa theo chiều ngang */
   align-items: center; /* Căn giữa theo chiều dọc */
   margin-top: 1px !important;

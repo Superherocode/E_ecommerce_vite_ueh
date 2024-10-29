@@ -1,6 +1,7 @@
 import express from "express"
-import { addProduct,listProduct,removeProduct } from "../controllers/productController.js"
+import { addFavorite, addProduct,getFav,listProduct,removeProduct } from "../controllers/productController.js"
 import multer from "multer"
+import authMiddleware from "../middleware/auth.js";
 
 const productRouter = express.Router();
 
@@ -21,5 +22,7 @@ const upload = multer({storage : storage})
 productRouter.post("/add",upload.single("image") ,addProduct);
 productRouter.get("/list",listProduct);
 productRouter.post("/remove",removeProduct);
+productRouter.post("/addfavorite", authMiddleware ,addFavorite);
+productRouter.post("/getfavorite",authMiddleware, getFav);
 
 export default productRouter;

@@ -4,6 +4,7 @@ import HomeNew from "../Components/HomeNew/HomeNew";
 import HomeCategory from "../Components/HomeCategory/HomeCategory";
 import HomeNews from "../Components/HomeNews/HomeNews";
 import HomeIntroduce from "../Components/HomeIntroduce/HomeIntroduce";
+import HomePopular from "../Components/HomePopular/HomePopular";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <HomeSlide/>
       <HomeNew/>
       <HomeCategory/>
+      <HomePopular/>
       <HomeNews/>
       <HomeIntroduce/>
     </div>

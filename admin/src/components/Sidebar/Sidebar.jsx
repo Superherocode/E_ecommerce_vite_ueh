@@ -4,20 +4,40 @@ import { assets } from '../../assets/assets'
 import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
+  // const [showMenu, setShowMenu] = useState(false);
+
+  // const toggleMenu = () => {
+  //   setShowMenu(!showMenu);
+  // };
+
+  // const closeMenuOnMobile = () => {
+  //   if (window.innerWidth <= 1150) {
+  //     setShowMenu(false);
+  //   }
+  // };
+
   return (
     <div className='sidebar'>
       <div className='sidebar-options'>
+        <NavLink to='/user' className='sidebar-option'>
+          <img src={assets.user_icon} alt='' />
+          <p>Người dùng</p>
+        </NavLink>
         <NavLink to='/add' className='sidebar-option'>
           <img src={assets.add_icon} alt='' />
-          <p>Add Items</p>
+          <p>Thêm sản phẩm</p>
         </NavLink>
         <NavLink to='/list' className='sidebar-option'>
           <img src={assets.order_icon} alt='' />
-          <p>List Items</p>
+          <p>Danh sách sản phẩm</p>
         </NavLink>
         <NavLink to='/orders' className='sidebar-option'>
           <img src={assets.order_icon} alt='' />
-          <p>Orders</p>
+          <p>Đơn hàng</p>
+        </NavLink>
+        <NavLink to='/coupons' className='sidebar-option'>
+          <img src={assets.order_icon} alt='' />
+          <p>Mã giảm giá</p>
         </NavLink>
       </div>
     </div>

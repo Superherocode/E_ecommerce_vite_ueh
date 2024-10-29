@@ -4,6 +4,8 @@ import order_icon from './order_icon.png'
 import profile_image from './profile_image.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.png'
+import user_icon from './user_icon.png'
+import menu_admin from './menu_admin.png'
 
 import ueh_logo from './ueh_logo.png'
 
@@ -14,7 +16,9 @@ export const assets ={
     profile_image,
     upload_area,
     parcel_icon,
-    ueh_logo
+    ueh_logo,
+    user_icon,
+    menu_admin
 }
 
 export const url = 'http://localhost:4000'
