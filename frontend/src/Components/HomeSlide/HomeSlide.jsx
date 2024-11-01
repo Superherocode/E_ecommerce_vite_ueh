@@ -8,14 +8,11 @@ import banner3 from "../Assets/HomeComponents/banner3.png";
 import icon1 from "../Assets/HomeComponents/icon-baner1.png";
 import icon2 from "../Assets/HomeComponents/icon-baner2.png";
 import icon3 from "../Assets/HomeComponents/icon-baner3.png";
-import icon4 from "../Assets/HomeComponents/icon-baner4.png"
-
+import icon4 from "../Assets/HomeComponents/icon-baner4.png";
 
 const HomeSlide = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const banners = [banner1, banner1_2, banner1_3];
-
-
 
   const handleNext = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % banners.length);
@@ -25,12 +22,10 @@ const HomeSlide = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + banners.length) % banners.length);
   };
 
-
   return (
     <div className="homeslide">
       <div className="homslide-section1">
-        <div id="controls-carousel" className="relative w-[1000px]" data-carousel="static">
-          {/* Carousel wrapper */}
+        <div id="controls-carousel" className="homeslide-left relative w-full" data-carousel="static"> {/* Chỉnh width ở đây */}
           <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
             {banners.map((banner, index) => (
               <div
@@ -70,8 +65,8 @@ const HomeSlide = () => {
           </button>
         </div>
         <div className="homeslide-1">
-          <img src={banner2} alt="" />
-          <img src={banner3} alt="" />
+          <img src={banner2} alt=" Banner Right 1" />
+          <img src={banner3} alt=" Banner Right 2" />
         </div>
       </div>
       <div className="homeslide-section2">

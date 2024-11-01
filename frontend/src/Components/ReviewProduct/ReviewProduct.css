@@ -1,20 +1,8 @@
-
-.rating-section {
-  background-color: #fff;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 0px 85px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
 .rating-summary {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: space-between; /* Giữ khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa các phần tử dọc */
+  flex-wrap: wrap; /* Để cho phép các phần tử chuyển dòng nếu cần */
 }
 
 .rating-number {
@@ -22,6 +10,13 @@ h3 {
   flex-direction: column;
   align-items: center;
   margin-right: 30px;
+  flex: 1; /* Để phần này chiếm không gian */
+}
+
+.star {
+  font-size: 24px; /* Kích thước của ngôi sao */
+  margin: 0 5px;
+  text-align: center /* Khoảng cách giữa các ngôi sao */
 }
 
 .rating-score {
@@ -36,7 +31,8 @@ h3 {
 }
 
 .rating-details {
-  width: 100%;
+  flex: 2; /* Để phần này chiếm nhiều không gian hơn */
+  margin-left: 20px; /* Cách giữa phần số sao và chi tiết đánh giá */
 }
 
 .rating-row {
@@ -91,9 +87,9 @@ h3 {
 
 .review-button:hover {
   background-color: #b86d30;
-} 
+}
 
-/*Review Comment */
+/* Review Comment */
 
 .review-section {
   background-color: #fff;
@@ -202,4 +198,54 @@ textarea {
 
 .submit-button:hover {
   background-color: #b86d30;
+}
+.comments-list {
+  color: #171615;
+  font-style: border;
+  font-size: large;
+  padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .rating-section {
+    margin: 0px 30px;
+  }
+  
+  .rating-summary {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rating-number {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .review-button,
+  .submit-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  .comment-tools {
+    justify-content: center; /* Căn giữa nút trong chế độ mobile */
+  }
+
+  .review-button,
+  .submit-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rating-section {
+    margin: 0px 10px;
+  }
+  .comment-tools {
+    justify-content: center; /* Căn giữa nút trong chế độ mobile */
+  }
+
+  .submit-button {
+    width: 100%; /* Có thể mở rộng nút chiếm toàn bộ chiều rộng */
+  }
 }

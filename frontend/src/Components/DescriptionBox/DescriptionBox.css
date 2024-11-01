@@ -64,3 +64,43 @@ table td:first-child {
   background-color: #f9f9f9;
   width: 30%;
 }
+/* Mobile layout */
+@media (max-width: 768px) {
+  .tabs {
+    width: 100%;
+    margin: 20px 0px;
+    text-align: center;
+    align-items: stretch;
+    border-bottom: none;
+  }
+
+  .tab {
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .tab.active::after {
+    height: 2px;
+    background-color: #00203f;
+    bottom: 0;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  table td:first-child {
+    font-size: 14px;
+    width: 40%;
+  }
+}
+
+

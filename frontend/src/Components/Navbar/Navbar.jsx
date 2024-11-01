@@ -113,7 +113,7 @@ const Navbar = ({ setShowLogin }) => {
           </ul>
 
           {!token ? (
-            <button onClick={() => setShowLogin(true)} className="px-3 py-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23]">
+            <button onClick={() => setShowLogin(true)} className="px-3 py-2 mr-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23]">
               Sign in
             </button>
           ) : (

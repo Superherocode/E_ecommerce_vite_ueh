@@ -6,7 +6,8 @@
 
 .san-pham-title {
   font-size: 28px;
-  color: #e67e22; /* Màu cam tương tự hình ảnh */
+  color: #e67e22;
+  /* Màu cam tương tự hình ảnh */
   margin-bottom: 10px;
 }
 
@@ -37,7 +38,8 @@
 }
 
 .san-pham-item:hover {
-  transform: translateY(-5px); /* Hiệu ứng khi rê chuột */
+  transform: translateY(-5px);
+  /* Hiệu ứng khi rê chuột */
 }
 
 .san-pham-image {
@@ -61,10 +63,10 @@
 }
 
 .banner {
-  height: 500px;
   padding: 60px 0px;
 }
-.banner > img {
+
+.banner>img {
   object-fit: cover;
 }
 
@@ -78,5 +80,7 @@
 @media (max-width: 480px) {
   .san-pham-grid {
     grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
   }
 }

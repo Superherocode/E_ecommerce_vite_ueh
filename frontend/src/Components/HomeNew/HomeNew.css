@@ -5,7 +5,8 @@
 
 .product-title {
   font-size: 28px;
-  color: #e67e22; /* Orange color similar to your example */
+  color: #e67e22;
+  /* Orange color similar to your example */
   margin-bottom: 20px;
 }
 
@@ -24,7 +25,8 @@
 }
 
 .tab.active {
-  color: #e67e22; /* Orange color for active tab */
+  color: #e67e22;
+  /* Orange color for active tab */
 }
 
 .product-grid {
@@ -36,14 +38,24 @@
 }
 
 /* Responsive design */
+@media (max-width: 936px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .product-grid {
     grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
   }
 }
