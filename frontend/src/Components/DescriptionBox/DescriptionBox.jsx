@@ -15,19 +15,19 @@ export const DescriptionBox = () => {
           <tbody>
             <tr>
               <td>Thương hiệu</td>
-              <td>Điểm 10</td>
+              <td>UEH Shop</td>
             </tr>
             <tr>
               <td>Trọng lượng</td>
-              <td>34 gram</td>
+              <td>Đang cập nhật</td>
             </tr>
             <tr>
               <td>Quy cách</td>
-              <td>1 cái/ ví</td>
+              <td>Đang cập nhật</td>
             </tr>
             <tr>
               <td>Màu sắc</td>
-              <td>Xanh</td>
+              <td>Đang cập nhật</td>
             </tr>
           </tbody>
 

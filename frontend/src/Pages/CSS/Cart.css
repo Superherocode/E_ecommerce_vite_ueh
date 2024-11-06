@@ -21,6 +21,11 @@
   border: 0;
 }
 
+.cartitems h2{
+  font-size: 24px;
+  font-weight: 600;
+}
+
 .cartitems-format {
   font-size: 17px;
   font-weight: 500;

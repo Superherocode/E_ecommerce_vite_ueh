@@ -1,3 +1,6 @@
+.introduction {
+  margin-top: 50px;
+}
 
 .rating{
   margin: 0;
@@ -5,7 +8,7 @@
 
 .icon-contact {
   display: flex;
-}
+} 
 
 .icon-contact p{
   width: 30px;
@@ -93,4 +96,8 @@ h3 {
 
 .submit-button:hover {
   background-color: #b45309;
+}
+
+.related-posts{
+  margin-top: 10px;
 }

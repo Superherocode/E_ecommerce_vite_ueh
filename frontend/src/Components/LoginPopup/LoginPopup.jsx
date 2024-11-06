@@ -36,6 +36,7 @@ const LoginPopup = ({ setShowLogin }) => {
         const response = await axios.post(newUrl, data);
 
         if (response.data.success) {
+            
             setToken(response.data.token);
             localStorage.setItem("token", response.data.token);
             setShowLogin(false)
@@ -46,7 +47,6 @@ const LoginPopup = ({ setShowLogin }) => {
     }
 
     useEffect(() => {
-        console.log(data);
     }, [data])
 
     return (

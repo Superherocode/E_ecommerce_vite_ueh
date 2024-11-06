@@ -8,16 +8,15 @@ import { toast } from 'react-toastify';
 
 const Cart = () => {
   const { all_product, cartItems, removeFromCart, addToCart, url, getTotalAmount } = useContext(ShopContext);
-
   const navigate = useNavigate();
 
   const [promoCode, setPromoCode] = useState("");
   const [discountAmount, setDiscountAmount] = useState(0);
-  const [finalAmount, setFinalAmount] = useState(getTotalAmount());
-  const [availableCoupons, setAvailableCoupons] = useState([]); // Danh sách mã giảm giá khả dụng
-  const [couponApplied, setCouponApplied] = useState(false); // Trạng thái áp dụng mã
+  const [finalAmount, setFinalAmount] = useState(getTotalAmount()); 
+  const [availableCoupons, setAvailableCoupons] = useState([]);
+  const [couponApplied, setCouponApplied] = useState(false);
 
-  // Lấy danh sách mã giảm giá khả dụng từ server
+  // Tải danh sách mã giảm giá khả dụng từ server
   useEffect(() => {
     const fetchCoupons = async () => {
       try {
@@ -33,18 +32,25 @@ const Cart = () => {
     fetchCoupons();
   }, [url]);
 
+  // Cập nhật finalAmount mỗi khi có thay đổi trong giỏ hàng hoặc discountAmount
+  useEffect(() => {
+    const total = getTotalAmount();
+    const shippingFee = 10;  // Phí giao hàng
+    const updatedFinalAmount = total + shippingFee - discountAmount;
+    setFinalAmount(updatedFinalAmount);
+
+    // Lưu finalAmount vào localStorage
+    localStorage.setItem("finalAmount", updatedFinalAmount);
+  }, [getTotalAmount, discountAmount]);
+
   // Xử lý áp dụng mã giảm giá
   const handleApplyCoupon = async () => {
     try {
       const response = await axios.post(`${url}/api/coupons/apply`, { code: promoCode, amount: getTotalAmount() });
       if (response.data.success) {
         setDiscountAmount(response.data.discountAmount);
-        setFinalAmount(response.data.finalAmount);
         setCouponApplied(true);
         toast.success(response.data.message);
-
-        // Lưu tổng tiền sau giảm giá vào localStorage
-      localStorage.setItem('finalAmount', response.data.finalAmount);
       } else {
         setCouponApplied(false);
         toast.error(response.data.message);
@@ -96,7 +102,7 @@ const Cart = () => {
           }
           return null;
         })}
-        
+
         {/* Tổng tiền và Mã giảm giá */}
         <div className="cartitems-down">
           <div className="cartitems-total">
@@ -104,7 +110,7 @@ const Cart = () => {
             <div>
               <div className="cartitems-total-item">
                 <p>Tổng cộng</p>
-                <p>{getTotalAmount() + ""}</p>
+                <p>{getTotalAmount() + ",000 VNĐ"}</p>
               </div>
               <hr />
               <div className="cartitems-total-item">
@@ -113,11 +119,11 @@ const Cart = () => {
               </div>
               <div className="cartitems-total-item">
                 <p>Giảm giá</p>
-                <p>{discountAmount},000 VNĐ</p>
+                <p>{discountAmount + ",000 VNĐ"}</p>
               </div>
               <div className="cartitems-total-item">
                 <p>Tổng</p>
-                <p>{finalAmount},000 VNĐ</p>
+                <p>{finalAmount + ",000 VNĐ"}</p>
               </div>
             </div>
             <button onClick={() => navigate('/order')}>Thanh toán</button>
@@ -127,10 +133,10 @@ const Cart = () => {
           <div className="cartitems-promocode">
             <p>Nếu bạn có mã giảm giá, nhập vào đây</p>
             <div className="cartitems-promobox">
-              <input 
-                type="text" 
-                value={promoCode} 
-                onChange={handlePromoCodeChange} 
+              <input
+                type="text"
+                value={promoCode}
+                onChange={handlePromoCodeChange}
                 placeholder="Nhập mã giảm giá"
               />
               <button onClick={handleApplyCoupon}>Áp dụng</button>
@@ -138,23 +144,29 @@ const Cart = () => {
             {couponApplied && <p className="coupon-success">Áp dụng mã giảm giá thành công!</p>}
 
             {/* Danh sách mã giảm giá khả dụng */}
-        <div className="available-coupons">
-          <h2>Mã giảm giá khả dụng</h2>
-          <ul>
-            {availableCoupons.map((coupon) => (
-              <li key={coupon._id} onClick={() => handleCouponClick(coupon.code)}>
-                <p>Mã code: {coupon.code} - Đơn tối thiểu: {coupon.minPurchase},000 VNĐ - Giảm {coupon.discount}{coupon.discountType === "percent" ? "%" : " VND"} - Hết hạn: {new Date(coupon.expiryDate).toLocaleDateString()} - Số lượng còn lại: {coupon.usageLimit - coupon.usedCount} </p>
-              </li>
-            ))}
-          </ul>
-        </div>
+            <div className="available-coupons">
+              <h2>Mã giảm giá khả dụng</h2>
+              <ul>
+                {availableCoupons.map((coupon) => (
+                  <li key={coupon._id} onClick={() => handleCouponClick(coupon.code)}>
+                    <p>
+                      Mã code: {coupon.code} - Đơn tối thiểu: {coupon.minPurchase},000 VNĐ - Giảm {coupon.discount}
+                      {coupon.discountType === "percent" ? "%" : " VND"} - Hết hạn:{" "}
+                      {new Date(coupon.expiryDate).toLocaleDateString("vi-VN", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric"
+                      })} - Số lượng còn lại: {coupon.usageLimit - coupon.usedCount}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-
-        
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Cart;

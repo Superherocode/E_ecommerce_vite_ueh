@@ -136,6 +136,7 @@ const editUser = async (req, res) => {
 };
 
 
+
 const listUser = async (req, res) => {
   try {
     const users = await userModel.find({});
@@ -163,6 +164,7 @@ const removeUser = async (req, res) => {
   }
 }
 
+// For user
 // get profileUser
 const getUser = async (req, res) => {
   try {
@@ -180,7 +182,35 @@ const getUser = async (req, res) => {
   }
 };
 
+// Change Password
+const changePassword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const userId = req.userId; // Lấy ID từ middleware hoặc req.body tùy theo thiết kế của bạn
+
+  try {
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.json({ success: false, message: "Mật khẩu hiện tại không đúng" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+    user.password = hashedNewPassword;
+    await user.save();
+
+    res.json({ success: true, message: "Đổi mật khẩu thành công" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Có lỗi xảy ra khi đổi mật khẩu" });
+  }
+};
 
 
 
-export { loginUser, registerUser, editUser, listUser, removeUser, getUser }
+export { loginUser, registerUser, editUser, listUser, removeUser, getUser, changePassword }

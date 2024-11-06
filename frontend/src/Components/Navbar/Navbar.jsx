@@ -30,6 +30,7 @@ const Navbar = ({ setShowLogin }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
+    window.location.reload()
     navigate("/");
   };
 
@@ -98,8 +99,11 @@ const Navbar = ({ setShowLogin }) => {
               {isProductsExpanded && (
                 <ul className="dropdown-menu">
                   <li onClick={() => setMenu("has-sanpham")}><Link to="/uehfood">UEH Food</Link></li>
+                  <hr />
                   <li onClick={() => setMenu("has-sanpham")}><Link to="/thoitrang">Thời trang</Link></li>
+                  <hr />
                   <li onClick={() => setMenu("has-sanpham")}><Link to="/dungcu">Dụng cụ học tập</Link></li>
+                  <hr />
                   <li onClick={() => setMenu("has-sanpham")}><Link to="/luuniem">Quà lưu niệm</Link></li>
                 </ul>
               )}
@@ -170,199 +174,3 @@ const Navbar = ({ setShowLogin }) => {
 };
 
 export default Navbar;
-
-// import React, { useContext, useState } from "react";
-// import './Navbar.css';
-// import { Link, useNavigate } from "react-router-dom";
-// import logo from '../Assets/Logo_UEH_xanh.png';
-// import vector1 from '../Assets/Vector_1.png';
-// import vector3 from '../Assets/Vector_3.png';
-// import vector4 from '../Assets/Vector_4.png';
-// import vector5 from '../Assets/Vector_5.png';
-// import vector from '../Assets/Vector.png';
-// import { ShopContext } from "../../Context/ShopContext";
-// import { assets } from "../Assets/Assets_food/assets";
-// import { models } from "../Assets/image/image_project";
-
-// const Navbar = ({ setShowLogin }) => {
-//   const [menu, setMenu] = useState("shop");
-//   const { getTotalCartItems, token, setToken } = useContext(ShopContext);
-//   const [isProductsExpanded, setIsProductsExpanded] = useState(false);
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-//   const navigate = useNavigate();
-
-//   const isMobile = window.innerWidth <= 768;
-
-//   const logout = () => {
-//     localStorage.removeItem("token");
-//     setToken("");
-//     navigate("/");
-//   };
-
-//   const toggleMobileMenu = () => {
-//     setIsMobileMenuOpen(!isMobileMenuOpen);
-//     document.body.style.overflow = isMobileMenuOpen ? "auto" : "hidden";
-//   };
-
-//   const closeMobileMenu = () => {
-//     setIsMobileMenuOpen(false);
-//     document.body.style.overflow = "auto";
-//   };
-
-//   return (
-//     <div className="navbar">
-//       <div className="navbar1">
-//         <div className="navbar1-contact">
-//           <div>
-//             <img src={vector} alt="" />
-//             <span>Hotline: 028 7306 1976</span>
-//           </div>
-//           <div className="email">
-//             <img src={vector1} alt="" />
-//             <span>Email: shop@ueh.edu.vn</span>
-//           </div>
-//         </div>
-//         <div className="promotion">
-//           <span>Khuyến Mãi Mùa Thu Giảm Giá</span>
-//           <span> 20%.</span>
-//         </div>
-//         <div className="navbar1-3">
-//           <img src={vector5} alt="" />
-//           <span>Tiếng Việt</span>
-//         </div>
-//       </div>
-
-//       <div className="navbar2">
-//         <div className="nav-logo">
-//           <Link to='/'><img src={logo} alt="" /></Link>
-//         </div>
-//         <div className="nav-menu">
-//           <ul className={`nav-items ${isMobileMenuOpen ? "hidden" : "open"}`}>
-//             <li onClick={() => setMenu("shop")} className={menu === "shop" ? "active" : ""}>
-//               <Link to="/">Trang chủ</Link>
-//             </li>
-//             <li onClick={() => setMenu("gioithieu")} className={menu === "gioithieu" ? "active" : ""}>
-//               <Link to='/gioithieu'>Giới thiệu</Link>
-//             </li>
-//             <li
-//               onClick={() => {
-//                 if (isMobile) {
-//                   setIsProductsExpanded(!isProductsExpanded);
-//                   setMenu("sanpham");
-//                 }
-//               }}
-//               onMouseEnter={() => !isMobile && setIsProductsExpanded(true)}
-//               onMouseLeave={() => !isMobile && setIsProductsExpanded(false)}
-//               className={`has-dropdown ${menu === "sanpham" ? "active" : ""}`}
-//             >
-//               <div onClick={() => setMenu("has-sanpham")} className={menu === "has-sanpham" ? "active" : ""} >
-//                 <Link to="/sanpham">Sản phẩm</Link>
-//                 <i className="fa-solid fa-chevron-down"></i>
-//               </div>
-//               {isProductsExpanded && (
-//                 <ul className="dropdown-menu">
-//                   <li>
-//                     <Link to="/uehfood">UEH Food</Link>
-//                   </li>
-//                   <li>
-//                     <Link to="/thoitrang">Thời trang</Link>
-//                   </li>
-//                   <li>
-//                     <Link to="/dungcu">Dụng cụ học tập</Link>
-//                   </li>
-//                   <li>
-//                     <Link to="/luuniem">Quà lưu niệm</Link>
-//                   </li>
-//                 </ul>
-//               )}
-//             </li>
-//             <li onClick={() => setMenu("khuyenmai")} className={menu === "khuyenmai" ? "active" : ""}>
-//               <Link to='/khuyenmai'>Khuyễn mãi</Link>
-//             </li>
-//             <li onClick={() => setMenu("tintuc")} className={menu === "tintuc" ? "active" : ""}>
-//               <Link to='/tintuc'>Tin tức</Link>
-//             </li>
-//           </ul>
-//           {!token ? (
-//             <button onClick={() => setShowLogin(true)} className="px-3 py-2 text-xs font-medium text-center text-black bg-[#D36F31] rounded-lg hover:bg-[#8c4b23]">
-//               Sign in
-//             </button>
-//           ) : (
-//             <div className="navbar-profile">
-//               <img className="navbar-profile-img" src="https://img.icons8.com/bubbles/100/000000/user.png" alt="" />
-//               <ul className="nav-profile-dropdown">
-//                 <li onClick={() => navigate('/profile')}>
-//                   <img src={models.icon_user} alt="" /><span>Thông tin</span>
-//                 </li>
-//                 <hr />
-//                 <li onClick={() => navigate('/myorders')}>
-//                   <img src={assets.bag_icon} alt="" /><span>Đơn hàng</span>
-//                 </li>
-//                 <hr />
-//                 <li onClick={logout}>
-//                   <img src={assets.logout_icon} alt="" />Đăng xuất
-//                 </li>
-//               </ul>
-//             </div>
-//           )}
-//           <div className="nav-icon">
-//             <Link to='/yeuthich'><img src={vector3} alt="" /></Link>
-//             <Link to='/cart'><img src={vector4} alt="" /></Link>
-//             <div className="nav-count2">{getTotalCartItems()}</div>
-//             <button onClick={toggleMobileMenu} className="icon-bar">
-//               <i className="fa-solid fa-bars"></i>
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {isMobileMenuOpen && (
-//         <div className="overlay" onClick={closeMobileMenu}></div>
-//       )}
-
-//       <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
-//         <button className="close-menu" onClick={closeMobileMenu}>
-//           &times;
-//         </button>
-//         <ul className="mobile-menu-items">
-//           <li onClick={() => { setMenu("shop"); closeMobileMenu(); }}>
-//             <Link to="/">Trang chủ</Link>
-//           </li>
-//           <li onClick={() => { setMenu("tintuc"); closeMobileMenu(); }}>
-//             <Link to="/tintuc">Tin tức</Link>
-//           </li>
-//           <li>
-//             <div className="products-menu" onClick={() => setIsProductsExpanded(!isProductsExpanded)}>
-//               <span>Sản phẩm</span>
-//               <button className="expand-button">{isProductsExpanded ? "-" : "+"}</button>
-//             </div>
-//             {isProductsExpanded && (
-//               <ul className="sub-menu">
-//                 <li onClick={() => { setMenu("uehfood"); closeMobileMenu(); }}>
-//                   <Link to="/uehfood">UEH Food</Link>
-//                 </li>
-//                 <li onClick={() => { setMenu("thoitrang"); closeMobileMenu(); }}>
-//                   <Link to="/thoitrang">Thời Trang</Link>
-//                 </li>
-//                 <li onClick={() => { setMenu("dungcu"); closeMobileMenu(); }}>
-//                   <Link to="/dungcu">Dụng cụ học tập</Link>
-//                 </li>
-//                 <li onClick={() => { setMenu("luuniem"); closeMobileMenu(); }}>
-//                   <Link to="/luuniem">Quà lưu niệm</Link>
-//                 </li>
-//               </ul>
-//             )}
-//           </li>
-//           <li onClick={() => { setMenu("khuyenmai"); closeMobileMenu(); }}>
-//             <Link to="/khuyenmai">Khuyễn mãi</Link>
-//           </li>
-//           <li onClick={() => { setMenu("lienhe"); closeMobileMenu(); }}>
-//             <Link to="/lienhe">Liên hệ</Link>
-//           </li>
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Navbar;

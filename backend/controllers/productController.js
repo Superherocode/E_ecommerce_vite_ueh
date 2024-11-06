@@ -57,6 +57,7 @@ const removeProduct = async (req, res) => {
 }
 
 // User
+// Thêm sản phẩm yêu thích
 const addFavorite = async (req, res) => {
   try {
     // Tìm người dùng theo ID
@@ -69,9 +70,9 @@ const addFavorite = async (req, res) => {
     }
     else {
       favData[req.body.itemId] = 0;
-      
+
     }
-    
+
     // Gửi phản hồi thành công sau khi cập nhật xong
     res.json({
       success: true,
@@ -82,7 +83,7 @@ const addFavorite = async (req, res) => {
 
     await userModel.findByIdAndUpdate(req.body.userId, { favData });
 
-    
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Error adding to favorites" });
@@ -94,12 +95,73 @@ const getFav = async (req, res) => {
   try {
     let userData = await userModel.findById(req.body.userId);
     let favData = await userData.favData;
-    res.json({success: true, favData})
+    res.json({ success: true, favData })
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"});
+    res.json({ success: false, message: "Error" });
   }
 }
 
+// Add comment to a product
+const addComment = async (req, res) => {
+  try {
+    const { productId, commentText, rating } = req.body;
+    const userId = req.body.userId;
 
-export { addProduct, listProduct, removeProduct, addFavorite, getFav }
+    // Tìm sản phẩm theo ID
+    const product = await productModel.findById(productId);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+
+    // Tìm người dùng theo ID để lấy thông tin tên người dùng
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Thêm bình luận mới vào danh sách bình luận của sản phẩm
+    const newComment = {
+      customerName: user.name, // Giả sử bạn có trường username trong userModel
+      commentText,
+      rating,
+      createdAt: new Date(),
+    };
+    product.comments.push(newComment);
+
+     // Tính lại rating trung bình
+     product.averageRating = product.calculateAverageRating();
+
+      // Cập nhật số lượng đánh giá và tính lại rating trung bình
+    product.reviewCount += 1;
+    product.averageRating = product.comments.reduce((sum, comment) => sum + comment.rating, 0) / product.reviewCount;
+
+    // Lưu sản phẩm sau khi thêm bình luận
+    await product.save();
+    res.json({ success: true, message: "Comment added successfully", comments: product.comments });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Error adding comment", error: error.message });
+  }
+};
+
+// Lấy danh sách bình luận của sản phẩm
+const getComments = async (req, res) => {
+  try {
+    const { productId } = req.params;
+
+    // Tìm sản phẩm dựa trên ID
+    const product = await productModel.findById(productId);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+
+    // Trả về danh sách bình luận của sản phẩm
+    res.json({ success: true, comments: product.comments });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Error fetching comments" });
+  }
+};
+
+export { addProduct, listProduct, removeProduct, addFavorite, getFav, addComment, getComments }

@@ -1,5 +1,5 @@
 import express from "express"
-import { addFavorite, addProduct,getFav,listProduct,removeProduct } from "../controllers/productController.js"
+import { addComment, addFavorite, addProduct,getComments,getFav,listProduct,removeProduct } from "../controllers/productController.js"
 import multer from "multer"
 import authMiddleware from "../middleware/auth.js";
 
@@ -24,5 +24,7 @@ productRouter.get("/list",listProduct);
 productRouter.post("/remove",removeProduct);
 productRouter.post("/addfavorite", authMiddleware ,addFavorite);
 productRouter.post("/getfavorite",authMiddleware, getFav);
+productRouter.post("/addcomment", authMiddleware, addComment);
+productRouter.get("/getcomment/:productId", getComments);
 
 export default productRouter;

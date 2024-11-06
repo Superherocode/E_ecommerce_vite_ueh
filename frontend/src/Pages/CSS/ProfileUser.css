@@ -1,102 +1,91 @@
+/* Căn chỉnh padding */
 .padding {
   padding: 3rem !important;
 }
 
-.user-card-full {
-  overflow: hidden;
+.user-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.card {
+.user-card-full {
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
-  border: none;
   margin-bottom: 30px;
 }
 
-.m-r-0 {
-  margin-right: 0px;
-}
-
-.m-l-0 {
-  margin-left: 0px;
-}
-
-.user-card-full .user-profile {
+.user-profile {
+  background: linear-gradient(to right, #ee5a6f, #f29263);
+  color: white;
+  text-align: center;
+  padding: 20px 0;
   border-radius: 5px 0 0 5px;
 }
 
-.bg-c-lite-green {
-  background: linear-gradient(to right, #ee5a6f, #f29263);
-}
-
-.user-profile {
-  padding: 20px 0;
-}
-
-.card-block {
-  padding: 1.25rem;
-}
-
-.m-b-25 {
-  margin-bottom: 25px;
-}
-
-.img-radius {
+.user-profile .profile-image {
   border-radius: 5px;
+  margin: 0 auto;
 }
 
-h6 {
+.user-profile h6 {
   font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
 }
 
-.card .card-block p {
-  line-height: 25px;
+.card-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media only screen and (min-width: 1400px) {
-  p {
-    font-size: 14px;
-  }
-}
-
-.b-b-default {
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.m-b-20 {
-  margin-bottom: 20px;
-}
-
-.p-b-5 {
-  padding-bottom: 5px !important;
-}
-
-.m-b-10 {
+.info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
-.text-muted {
-  color: #919aa3 !important;
+.info-item {
+  flex: 1;
+  min-width: 45%;
 }
 
-.f-w-600 {
+.info-label {
   font-weight: 600;
+  font-size: 14px;
+  color: #333;
 }
 
-.m-t-20 {
-  margin-top: 20px;
-}
-
-.m-t-40 {
-  margin-top: 20px;
+.info-value {
+  font-size: 14px;
+  color: #919aa3;
+  font-weight: 400;
 }
 
 .user-actions {
   display: flex;
   gap: 10px;
+  margin-top: 20px;
 }
 
-.user-actions .btn {
+.user-actions .action-button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -105,41 +94,158 @@ h6 {
   transition: background-color 0.3s ease;
 }
 
-.btn-primary {
-  background-color: #007bff;
+.primary-button {
+  background-color: #D67B42 ;
   color: #fff;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+.primary-button:hover {
+  background-color: #d36f31;
 }
 
-.btn-secondary {
+.secondary-button {
   background-color: #6c757d;
   color: #fff;
 }
 
-.btn-secondary:hover {
+.secondary-button:hover {
   background-color: #5a6268;
 }
 
-.user-card-full .social-link li {
+.social-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-links li {
   display: inline-block;
 }
 
-.user-card-full .social-link li a {
+.social-links li a {
   font-size: 20px;
-  margin: 0 10px 0 0;
+  margin-right: 10px;
+  color: #333;
   transition: all 0.3s ease-in-out;
 }
 
-.user-card-full .social-link li a:hover {
+.social-links li a:hover {
   color: #007bff;
+}
+
+/* Đổi mật khẩu */
+/* CSS cho ProfileUser */
+.user-profile-container {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.user-card-full {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation hiển thị và ẩn form đổi mật khẩu */
+.change-password-form {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.5s ease forwards;
+  opacity: 0;
+}
+
+.show-change-password .change-password-form {
+  opacity: 1;
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.change-password-form h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Hiệu ứng focus cho input */
+.change-password-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.change-password-form input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Hiệu ứng hover và active cho nút */
+.save-button-pass {
+  background-color: #D67B42;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.save-button-pass:hover {
+  background-color: #D67B42;
+  transform: scale(1.05);
+}
+
+.save-button-pass:active {
+  transform: scale(0.98);
+}
+
+
+@media only screen and (min-width: 1400px) {
+  .info-value, .info-label {
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 1200px) {
   .col-xl-6 {
-      flex: 0 0 auto;
-      width: 60% !important;
+    flex: 0 0 auto;
+    width: 60% !important;
   }
 }
+

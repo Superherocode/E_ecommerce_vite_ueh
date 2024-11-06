@@ -15,8 +15,10 @@ import PlaceOrder from './Pages/PlaceOrder';
 import Verify from './Pages/Verify';
 import MyOrders from './Pages/MyOrders';
 import 'react-toastify/dist/ReactToastify.css';
-import ProfileUser from './Pages/Profileuser';
+import ProfileUser from './Pages/ProfileUser';
 import ShopLike from './Pages/ShopLike';
+import ProfileEditUser from './Pages/ProfileEditUser';
+
 
 
 
@@ -43,6 +45,7 @@ const App = () => {
         <Route path='/lienhe' element={<Contact/>}/>
         <Route path='/taikhoan' element={<LoginSignup/>}/>
         <Route path='/profile' element={<ProfileUser/>}/>
+        <Route path='//edit-profile' element={<ProfileEditUser/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/order' element={<PlaceOrder/>}/>
         <Route path='/verify' element={<Verify/>} />

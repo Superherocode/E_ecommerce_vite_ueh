@@ -1,47 +1,87 @@
-import React, { useState } from 'react'; // Nhập useState
+import React, { useContext, useEffect, useState } from 'react';
 import './ReviewProduct.css';
+import { ShopContext } from '../../Context/ShopContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-export const ReviewProduct = () => {
-  const [comment, setComment] = useState(''); // Khởi tạo state cho bình luận
-  const [commentsList, setCommentsList] = useState([]); // Khởi tạo state cho danh sách bình luận
-  const [rating, setRating] = useState(0); // Khởi tạo state cho số sao
-  const [review, setReview] = useState(''); // Khởi tạo state cho nhận xét
-  const [showRatingForm, setShowRatingForm] = useState(false); // Khởi tạo state cho việc hiển thị form đánh giá
-  const [reviewsList, setReviewsList] = useState([]); // Khởi tạo state cho danh sách nhận xét
+export const ReviewProduct = (props) => {
+  const { product } = props;
+  const { url } = useContext(ShopContext);
 
-  const handleCommentChange = (e) => {
-    setComment(e.target.value); // Cập nhật state khi người dùng nhập bình luận
-  };
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState('');
+  const [showRatingForm, setShowRatingForm] = useState(false);
+  const [reviewsList, setReviewsList] = useState([]);
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      try {
+        const response = await axios.get(`${url}/api/product/getcomment/${product._id}`);
+        if (response.data.success) {
+          setReviewsList(response.data.comments);
+        }
+      } catch (error) {
+        toast.error("Không thể lấy danh sách bình luận.");
+      }
+    };
+    if (product && product._id) fetchComment();
+  }, [url, product]);
 
   const handleReviewChange = (e) => {
-    setReview(e.target.value); // Cập nhật state khi người dùng nhập nhận xét
+    setReview(e.target.value);
   };
 
   const handleRatingClick = (star) => {
-    setRating(star); // Cập nhật số sao khi người dùng nhấp vào
+    setRating(star);
   };
 
-  const handleCommentSubmit = () => {
-    if (comment.trim()) { // Kiểm tra xem bình luận có rỗng không
-      setCommentsList([...commentsList, comment]); // Thêm bình luận vào danh sách
-      setComment(''); // Xóa bình luận sau khi gửi
+  const handleReviewSubmit = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.warn("Bạn cần đăng nhập để thêm bình luận.");
+      return;
+    }
+
+    if (review.trim() && rating > 0) {
+      try {
+        const response = await axios.post(
+          `${url}/api/product/addcomment`,
+          {
+            productId: product._id,
+            commentText: review,
+            rating: rating,
+          },
+          {
+            headers: { token },
+          }
+        );
+
+        if (response.data.success) {
+          setReviewsList(response.data.comments);
+          setReview('');
+          setRating(0);
+          setShowRatingForm(false);
+          toast.success("Bình luận đã được thêm thành công!");
+        } else {
+          toast.error("Không thể thêm bình luận.");
+        }
+      } catch (error) {
+        toast.error("Có lỗi xảy ra khi gửi bình luận.");
+        console.error(error);
+      }
+    } else {
+      toast.warn("Vui lòng nhập nội dung bình luận và chọn số sao.");
     }
   };
 
-  const handleReviewSubmit = () => {
-    if (review.trim() && rating > 0) { // Kiểm tra xem nhận xét có rỗng và đã chọn số sao chưa
-      setReviewsList([...reviewsList, { comment: review, rating }]); // Thêm nhận xét vào danh sách
-      setReview(''); // Xóa nhận xét sau khi gửi
-      setRating(0); // Đặt lại số sao về 0
-      setShowRatingForm(false); // Ẩn form đánh giá sau khi gửi
-    }
-  };
-
-  // Tính toán chi tiết đánh giá
   const ratingCounts = [0, 0, 0, 0, 0];
   reviewsList.forEach(cmt => {
     ratingCounts[cmt.rating - 1] += 1;
   });
+
+  const averageRating = reviewsList.length > 0
+    ? (reviewsList.reduce((acc, curr) => acc + curr.rating, 0) / reviewsList.length).toFixed(1)
+    : 0;
 
   return (
     <div>
@@ -49,12 +89,12 @@ export const ReviewProduct = () => {
         <h3>Khách hàng đánh giá</h3>
         <div className="rating-summary">
           <div className="rating-number">
-            <span className="rating-score">{reviewsList.length > 0 ? (reviewsList.reduce((acc, curr) => acc + curr.rating, 0) / reviewsList.length).toFixed(1) : 'Chưa đánh giá'}</span>
+            <span className="rating-score">{averageRating || 'Chưa có đánh giá'}</span>
             <div className="stars">
               {[1, 2, 3, 4, 5].map((star) => (
                 <span
                   key={star}
-                  style={{ color: star <= (reviewsList.length > 0 ? (reviewsList.reduce((acc, curr) => acc + curr.rating, 0) / reviewsList.length) : 0) ? '#f4b400' : '#ccc' }} // Đổi màu sao đã chọn
+                  style={{ color: star <= averageRating ? '#f4b400' : '#ccc' }} // Sử dụng averageRating đã tính
                 >
                   ★
                 </span>
@@ -62,8 +102,7 @@ export const ReviewProduct = () => {
             </div>
           </div>
         </div>
-        
-        {/* Thanh rating-details */}
+
         <div className="rating-details">
           <h4>Chi tiết đánh giá:</h4>
           {[5, 4, 3, 2, 1].map((star) => (
@@ -83,7 +122,6 @@ export const ReviewProduct = () => {
         </div>
       </div>
 
-      {/* Form đánh giá */}
       {showRatingForm && (
         <div className="review-section">
           <h3>Đánh giá sản phẩm</h3>
@@ -92,17 +130,17 @@ export const ReviewProduct = () => {
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
-                onClick={() => handleRatingClick(star)} // Xử lý khi người dùng nhấp vào sao
-                style={{ cursor: 'pointer', color: star <= rating ? '#f4b400' : '#ccc' }} // Đổi màu sao đã chọn
+                onClick={() => handleRatingClick(star)}
+                style={{ cursor: 'pointer', color: star <= rating ? '#f4b400' : '#ccc' }}
               >
                 ★
               </span>
             ))}
           </div>
           <div className="comment-box">
-            <textarea 
-              value={review} // Liên kết với state
-              onChange={handleReviewChange} // Xử lý thay đổi trong textarea
+            <textarea
+              value={review}
+              onChange={handleReviewChange}
               placeholder="Viết nhận xét của bạn..."
             />
           </div>
@@ -112,62 +150,43 @@ export const ReviewProduct = () => {
         </div>
       )}
 
-      {/* Hiển thị danh sách nhận xét */}
       <div className="reviews-list">
         <h3>Nhận xét của khách hàng:</h3>
-        {reviewsList.map((cmt, index) => (
-          <div key={index} className="user-review">
-            <div className="user-info">
-              <div className="user-avatar">LĐ</div>
-              <div className="user-details">
-                <p className="user-name">Khách hàng {index + 1}</p>
-                <p className="review-time">Vừa xong</p>
+        {reviewsList.length > 0 ? (
+          reviewsList.map((cmt, index) => (
+            <div key={index} className="user-review">
+              <div className="user-info">
+                <img className="navbar-profile-img" src="https://img.icons8.com/bubbles/100/000000/user.png" alt="" />
+                <div className="user-details">
+                  <p className="user-name">{cmt.customerName}</p>
+                  <p className="review-time">
+                    {`${new Intl.DateTimeFormat('vi-VN', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: '2-digit'
+                    }).format(new Date(cmt.createdAt))}, ${new Intl.DateTimeFormat('vi-VN', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric'
+                    }).format(new Date(cmt.createdAt))}`}
+                  </p>
+                </div>
+              </div>
+              <div className="user-rating">
+                <div className="stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span key={star} style={{ color: star <= cmt.rating ? '#f4b400' : '#ccc' }}>
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p>{cmt.commentText}</p>
               </div>
             </div>
-            <div className="user-rating">
-              <div className="stars">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} style={{ color: star <= cmt.rating ? '#f4b400' : '#ccc' }}>
-                    ★
-                  </span>
-                ))}
-              </div>
-              <p>{cmt.comment}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Form bình luận */}
-      <div className="comment-section">
-        <h3>Bình luận</h3>
-        <div className="comment-box">
-          <textarea 
-            value={comment} // Liên kết với state
-            onChange={handleCommentChange} // Xử lý thay đổi trong textarea
-            placeholder="Viết bình luận của bạn..."
-          />
-        </div>
-        <div className="comment-tools">
-          <button className="submit-button" onClick={handleCommentSubmit}>GỬI BÌNH LUẬN</button>
-        </div>
-      </div>
-
-      {/* Hiển thị danh sách bình luận */}
-      <div className="comments-list">
-        <h3>Bình luận của khách hàng:</h3>
-        {commentsList.map((cmt, index) => (
-          <div key={index} className="user-comment">
-            <div className="user-info">
-              <div className="user-avatar">LĐ</div>
-              <div className="user-details">
-                <p className="user-name">Khách hàng {index + 1}</p>
-                <p className="review-time">Vừa xong</p>
-              </div>
-            </div>
-            <p>{cmt}</p>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Không có bình luận nào.</p>
+        )}
       </div>
     </div>
   );

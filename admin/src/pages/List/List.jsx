@@ -43,6 +43,7 @@ const List = ({url}) => {
           <b>Tên</b>
           <b>Loại sản phẩm</b>
           <b>Giá</b>
+          <b>Số lượng đã bán</b>
           <b>Thao tác</b>
         </div>
         {list.map((item, index)=>{
@@ -52,6 +53,7 @@ const List = ({url}) => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>${item.new_price}</p>
+              <p>{item.soldCount}</p>
               <p onClick={()=>{removeProduct(item._id)}} className='cursor'>X</p>
             </div>
           )

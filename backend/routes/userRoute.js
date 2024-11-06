@@ -10,6 +10,7 @@ userRouter.post("/remove",removeUser)
 userRouter.get("/list", listUser)
 userRouter.post("/update", editUser)
 userRouter.get("/profile", authMiddleware, getUser)
+userRouter.put("/change-password", authMiddleware, getUser)
 
 
 export default userRouter;

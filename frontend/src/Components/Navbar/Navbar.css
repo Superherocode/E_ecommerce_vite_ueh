@@ -112,6 +112,7 @@
 .has-dropdown .dropdown-menu {
   display: none;
   text-align: center;
+  width: 180px;
   position: absolute;
   top: 100%;
   left: 0;
@@ -123,6 +124,7 @@
   z-index: 10;
   transition: opacity 0.1s ease;
   border: 1px solid #D67B42;
+  border-radius: 4px;
 }
 
 .has-dropdown:hover .dropdown-menu,

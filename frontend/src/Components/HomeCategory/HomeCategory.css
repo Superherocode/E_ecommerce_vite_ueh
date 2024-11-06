@@ -94,8 +94,8 @@
 
 /* thái */
 
-.danh-muc-item:hover > img{
-  transform: scale(1.1);
+.danh-muc-item:hover > img, .danh-muc-item:hover > button {
+  transform: scale(1.05);
   transition: .5s;
   cursor: pointer;
 }

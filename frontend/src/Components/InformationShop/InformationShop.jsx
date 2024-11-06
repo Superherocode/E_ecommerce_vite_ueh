@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import './InformationShop.css'
+import React, { useState } from 'react';
+import './InformationShop.css';
 
 const InformationShop = () => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState(''); // State for the input comment
+  const [commentsList, setCommentsList] = useState([]); // State for list of comments
 
   const handleInputChange = (event) => {
     setComment(event.target.value);
@@ -10,12 +11,13 @@ const InformationShop = () => {
 
   const handleSubmit = () => {
     if (comment.trim()) {
-      alert(`Bình luận của bạn: ${comment}`);
-      setComment('');
+      setCommentsList([...commentsList, comment]); // Add new comment to commentsList
+      setComment(''); // Clear input after submission
     } else {
       alert('Vui lòng nhập bình luận.');
     }
   };
+
   return (
     <div className='informationshop'>
       <div className="introduction">
@@ -34,13 +36,7 @@ const InformationShop = () => {
           <p><i className="fa-brands fa-youtube"></i></p>
         </div>
       </div>
-      <div className="star-rating">
-        <span className="star" data-value="1">★</span>
-        <span className="star" data-value="2">★</span>
-        <span className="star" data-value="3">★</span>
-        <span className="star" data-value="4">★</span>
-        <span className="star" data-value="5">★</span>
-      </div>
+      
       <div className="comment-container">
         <h3>Bình luận</h3>
         <div className="comment-input-wrapper">
@@ -58,6 +54,24 @@ const InformationShop = () => {
           Gửi bình luận
         </button>
       </div>
+
+      {/* Display submitted comments */}
+      <div className="comments-list">
+        <h3>Bình luận của khách hàng:</h3>
+        {commentsList.map((cmt, index) => (
+          <div key={index} className="user-comment">
+            <div className="user-info">
+              <div className="user-avatar">LĐ</div>
+              <div className="user-details">
+                <p className="user-name">Khách hàng {index + 1}</p>
+                <p className="review-time">Vừa xong</p>
+              </div>
+            </div>
+            <p>{cmt}</p>
+          </div>
+        ))}
+      </div>
+
       <div className="related-posts">
         <h3>Bài viết khác</h3>
         <ul>
@@ -69,7 +83,7 @@ const InformationShop = () => {
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InformationShop
+export default InformationShop;

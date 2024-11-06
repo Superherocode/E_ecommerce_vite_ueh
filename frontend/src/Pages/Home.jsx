@@ -5,6 +5,7 @@ import HomeCategory from "../Components/HomeCategory/HomeCategory";
 import HomeNews from "../Components/HomeNews/HomeNews";
 import HomeIntroduce from "../Components/HomeIntroduce/HomeIntroduce";
 import HomePopular from "../Components/HomePopular/HomePopular";
+import HomeReview from "../Components/HomeReview/HomeReview";
 
 const Home = () => {
   return (
