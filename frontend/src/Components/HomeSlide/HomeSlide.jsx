@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './HomeSlide.css';
 import banner1 from "../Assets/HomeComponents/banner1.png";
-import banner1_2 from "../Assets/HomeComponents/banner1-2.png";
-import banner1_3 from "../Assets/HomeComponents/banner1-3.png";
+import banner1_2 from "../Assets/HomeComponents/banner1-2.jpg";
+import banner1_3 from "../Assets/HomeComponents/banner1-3.jpg";
 import banner2 from "../Assets/HomeComponents/banner2.png";
 import banner3 from "../Assets/HomeComponents/banner3.png";
 import icon1 from "../Assets/HomeComponents/icon-baner1.png";
@@ -53,7 +53,7 @@ const HomeSlide = () => {
           </button>
           <button
             type="button"
-            className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            className="absolute top-0 end-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none z-0"
             onClick={handleNext}
           >
             <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">

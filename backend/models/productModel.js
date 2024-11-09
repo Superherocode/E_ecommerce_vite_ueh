@@ -19,6 +19,11 @@ const productSchema = new mongoose.Schema({
     },
   ],
   averageRating: { type: Number, default: 0 }, // Thêm thuộc tính này để lưu rating trung bình
+  // Thêm các trường thông số kỹ thuật mới
+  brand: { type: String, default: "Đang cập nhật" },
+  weight: { type: String, default: "Đang cập nhật" },
+  specifications: { type: String, default: "Đang cập nhật" },
+  color: { type: String, default: "Đang cập nhật" }
 });
 
 

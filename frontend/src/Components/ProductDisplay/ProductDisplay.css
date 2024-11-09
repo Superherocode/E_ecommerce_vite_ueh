@@ -29,8 +29,10 @@
 
 .productdisplay-right {
   margin: 0 30px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .productdisplay-right h1 {
@@ -114,13 +116,14 @@
 }
 
 .productdisplay-img {
+  cursor: pointer;
+  margin-top: 20px;
   position: relative; /* Position for containing the zoom lens */
   overflow: hidden; /* Ensure lens doesn't overflow out of the image */
 }
 
 .productdisplay-main-img {
-  width: 100%; /* Ensure image takes up full container width */
-  max-width: 500px;
+  width: 500px;
   height: 510px;
   object-fit: cover;
 }
@@ -280,9 +283,6 @@
   .productdisplay-img-list img {
     height: 120px;
   }
-  .productdisplay-main-img {
-    height: 450px;
-  }
   .productdisplay-right {
     gap: 3px;
     font-size: 13px;
@@ -323,7 +323,8 @@
     height: 80px;
   }
   .productdisplay-main-img {
-    height: 350px;
+    width: 490px;
+    height: 450px;
   }
   .productdisplay-right h1 {
     font-size: 18px;
@@ -353,6 +354,7 @@
 @media(max-width:800px) {
   .productdisplay {
     margin: 0px 10px;
+    flex-direction: column;
   }
   .productdisplay-left {
     gap: 0px;
@@ -364,9 +366,6 @@
   }
   .productdisplay-img-list img {
     height: 70px;
-  }
-  .productdisplay-main-img {
-    height: 300px;
   }
   .productdisplay-right h1 {
     font-size: 14px;
@@ -410,6 +409,7 @@
   }
   .productdisplay-main-img {
     height: 330px;
+    width: 100%;
   }
   .productdisplay-right {
     margin: 5px;

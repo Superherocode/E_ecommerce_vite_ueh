@@ -4,7 +4,7 @@ import { ShopContext } from '../../Context/ShopContext';
 
 const ProductDisplay = (props) => {
   const { product } = props;
-  const { addToCart, url, addToFavorites } = useContext(ShopContext);
+  const { addToCart, url, addToFavorites, all_product } = useContext(ShopContext);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [quantity, setQuantity] = useState(1);
@@ -26,7 +26,7 @@ const ProductDisplay = (props) => {
   // Hàm để mở và đóng modal
   const handleImageClick = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-  
+
 
   return (
     <div className="productdisplay">
@@ -81,14 +81,21 @@ const ProductDisplay = (props) => {
         <div className="productdisplay-right-description">{product.description}</div>
 
         <div className="productdisplay-right-size">
-          <h1>Select Size</h1>
-          <div className="productdisplay-right-sizes">
-            <div>S</div>
-            <div>M</div>
-            <div>L</div>
-            <div>XL</div>
-            <div>XXL</div>
-          </div>
+          {product.category === "thoitrang" && (
+            <div>
+              <h1>Select Size</h1>
+              <div className="productdisplay-right-sizes">
+                <div>S</div>
+                <div>M</div>
+                <div>L</div>
+                <div>XL</div>
+                <div>XXL</div>
+              </div>
+            </div>
+          )}
+
+
+
 
           <div className="productdisplay-right-button">
             <div className="counter-container">

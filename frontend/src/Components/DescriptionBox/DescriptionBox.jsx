@@ -1,7 +1,9 @@
 import React from 'react'
 import './DescriptionBox.css'
 
-export const DescriptionBox = () => {
+export const DescriptionBox = (props) => {
+  const { product } = props;
+
   return (
     <div className='descriotionbox'>
       <div className="tabs">
@@ -15,24 +17,24 @@ export const DescriptionBox = () => {
           <tbody>
             <tr>
               <td>Thương hiệu</td>
-              <td>UEH Shop</td>
+              <td>{product.brand}</td>
             </tr>
             <tr>
               <td>Trọng lượng</td>
-              <td>Đang cập nhật</td>
+              <td>{product.weight}</td>
             </tr>
             <tr>
               <td>Quy cách</td>
-              <td>Đang cập nhật</td>
+              <td>{product.specifications}</td>
             </tr>
             <tr>
               <td>Màu sắc</td>
-              <td>Đang cập nhật</td>
+              <td>{product.color}</td>
             </tr>
           </tbody>
 
         </table>
-        <div className="product-details">
+        {/* <div className="product-details">
           <h3>Tính năng nổi bật:</h3>
           <p>Kéo học sinh có nắp đậy Điểm 10 TP-SC01 phù hợp cho học sinh, sinh viên, văn phòng và gia đình. Kiểu dáng trang nhã, màu sắc xanh năng động.</p>
           <p><strong>Công dụng:</strong> Dùng để cắt giấy.</p>
@@ -45,7 +47,7 @@ export const DescriptionBox = () => {
             <li>Kéo có nắp đậy không gây nguy hiểm cho người sử dụng</li>
             <li>Tay cầm có móc cài tiện lợi</li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   )

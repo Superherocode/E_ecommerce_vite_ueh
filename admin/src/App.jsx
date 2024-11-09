@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import User from './pages/User/User'
 import Coupons from './pages/Coupons/Coupons'
+import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
 
 const App = () => {
 
@@ -16,17 +18,19 @@ const App = () => {
 
   return (
     <div>
-      <ToastContainer/>
-      <Navbar/>
+      <ToastContainer />
+      <Navbar />
       <hr />
       <div className="app-content">
-        <Sidebar/>
+        <Sidebar />
         <Routes>
-          <Route path='/user' element={<User url={url}/>}/>
-          <Route path='/add' element={<Add url={url}/>}/>
-          <Route path='/list' element={<List url={url}/>}/>
-          <Route path='/orders' element={<Orders url={url}/>}/>
-          <Route path='/coupons' element={<Coupons url={url}/>}/>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/user' element={<User url={url} />} />
+          <Route path='/add' element={<Add url={url} />} />
+          <Route path='/list' element={<List url={url} />} />
+          <Route path='/orders' element={<Orders url={url} />} />
+          <Route path='/coupons' element={<Coupons url={url} />} />
         </Routes>
       </div>
     </div>

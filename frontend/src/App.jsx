@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProfileUser from './Pages/ProfileUser';
 import ShopLike from './Pages/ShopLike';
 import ProfileEditUser from './Pages/ProfileEditUser';
+import KhuyenMai from './Pages/KhuyenMai';
 
 
 
@@ -40,8 +41,8 @@ const App = () => {
           <Route path=':productId' element={<Product/>}/>
         </Route>
         <Route path='/gioithieu' element={<ShopInformation/>}/>
-        <Route path='/khuyenmai' element={<ShopIntroduce/>}/>
-        <Route path='/tintuc' element={<ShopIntroduce/>}/>
+        <Route path='/khuyenmai' element={<KhuyenMai category="khuyenmai"/>}/>
+        <Route path='/tintuc' element={<ShopIntroduce category="tintuc"/>}/>
         <Route path='/lienhe' element={<Contact/>}/>
         <Route path='/taikhoan' element={<LoginSignup/>}/>
         <Route path='/profile' element={<ProfileUser/>}/>

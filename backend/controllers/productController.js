@@ -20,7 +20,12 @@ const addProduct = async (req, res) => {
     image: image_filename,
     category: req.body.category,
     new_price: req.body.new_price,
-    old_price: req.body.old_price
+    old_price: req.body.old_price,
+    // Thêm các thuộc tính thông số kỹ thuật
+    brand: req.body.brand || "Đang cập nhật",
+    weight: req.body.weight || "Đang cập nhật",
+    specifications: req.body.specifications || "Đang cập nhật",
+    color: req.body.color || "Đang cập nhật"
   })
   try {
     await product.save();

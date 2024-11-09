@@ -1,3 +1,9 @@
+.shop-category h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  margin-left: 10%;
+}
+
 .search-bar {
   margin: 20px 0;
   text-align: center;
@@ -15,7 +21,7 @@
 .category-menu {
   margin-top: 20px;
   display: flex;
-  gap: 16px;
+  gap: 50px;
   justify-content: center;
   flex-wrap: wrap; /* Cho phép các mục xuống hàng khi không đủ không gian */
 }
@@ -39,7 +45,7 @@
 }
 
 .rounded {
-  border-radius: 50%; /* Điều chỉnh bán kính để hình ảnh trở thành tròn */
+  border-radius: 50% !important; /* Điều chỉnh bán kính để hình ảnh trở thành tròn */
   width: 120px; /* Bạn có thể tùy chỉnh kích thước */
   height: 120px; /* Bạn có thể tùy chỉnh kích thước */
   transition: transform 0.3s ease;

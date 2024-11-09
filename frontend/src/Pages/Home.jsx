@@ -16,6 +16,7 @@ const Home = () => {
       <HomePopular/>
       <HomeNews/>
       <HomeIntroduce/>
+      <HomeReview/>
     </div>
   )
 }

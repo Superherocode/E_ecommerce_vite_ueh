@@ -5,35 +5,41 @@ import { toast } from 'react-toastify';
 
 const Coupons = ({ url }) => {
 
+  // State để lưu danh sách mã giảm giá
   const [coupons, setListCoupons] = useState([]);
+  
+  // State để lưu dữ liệu của mã giảm giá mới cần thêm
   const [newCoupon, setNewCoupon] = useState({
-    code: "",
-    discount: 0,
-    discountType: "percent",
-    expiryDate: "",
-    minPurchase: 0,
-    usageLimit: 1,
+    code: "",            // Mã code của mã giảm giá
+    discount: 0,         // Giá trị giảm giá
+    discountType: "percent", // Loại giảm giá (phần trăm hoặc cố định)
+    expiryDate: "",      // Ngày hết hạn của mã giảm giá
+    minPurchase: 0,      // Mức chi tiêu tối thiểu để áp dụng mã
+    usageLimit: 1,       // Số lần sử dụng tối đa của mã giảm giá
   });
 
+  // Hàm lấy danh sách mã giảm giá từ API
   const fetchListCoupon = async () => {
     try {
       const response = await axios.get(`${url}/api/coupons/list`);
       if (response.data.success) {
-        setListCoupons(response.data.data);
+        setListCoupons(response.data.data); // Cập nhật state với danh sách mã giảm giá
       } else {
-        toast.error('Không lấy mã giảm giá được');
+        toast.error('Không lấy mã giảm giá được'); // Thông báo nếu có lỗi
       }
     } catch (error) {
-      toast.error(`Lỗi kết nối: ${error.message}`);
+      toast.error(`Lỗi kết nối: ${error.message}`); // Thông báo lỗi kết nối nếu không lấy được dữ liệu
     }
   };
 
+  // Hàm thêm mã giảm giá mới
   const handleAddCoupon = async () => {
     try {
       const response = await axios.post(`${url}/api/coupons/add`, newCoupon);
       if (response.data.success) {
-        toast.success(response.data.message);
-        fetchListCoupon();
+        toast.success(response.data.message); // Thông báo khi thêm thành công
+        fetchListCoupon(); // Cập nhật lại danh sách mã giảm giá
+        // Reset form sau khi thêm mã giảm giá thành công
         setNewCoupon({
           code: "",
           discount: 0,
@@ -43,36 +49,40 @@ const Coupons = ({ url }) => {
           usageLimit: 1,
         });
       } else {
-        toast.error(response.data.message);
+        toast.error(response.data.message); // Thông báo nếu thêm thất bại
       }
     } catch (error) {
-      toast.error(`Lỗi khi thêm mã giảm giá: ${error.message}`);
+      toast.error(`Lỗi khi thêm mã giảm giá: ${error.message}`); // Thông báo lỗi nếu không thêm được mã
     }
   };
 
+  // Hàm xóa mã giảm giá dựa trên ID
   const handleRemoveCoupon = async (couponId) => {
     try {
       const response = await axios.delete(`${url}/api/coupons/remove/${couponId}`);
       if (response.data.success) {
-        toast.success(response.data.message);
-        fetchListCoupon();
+        toast.success(response.data.message); // Thông báo khi xóa thành công
+        fetchListCoupon(); // Cập nhật lại danh sách mã giảm giá
       } else {
-        toast.error('Không thể xóa mã giảm giá');
+        toast.error('Không thể xóa mã giảm giá'); // Thông báo nếu không xóa được mã
       }
     } catch (error) {
-      toast.error(`Lỗi khi xóa mã giảm giá: ${error.message}`);
+      toast.error(`Lỗi khi xóa mã giảm giá: ${error.message}`); // Thông báo lỗi khi xóa thất bại
     }
   };
 
+  // Hàm xử lý thay đổi trong form thêm mã giảm giá
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewCoupon({ ...newCoupon, [name]: value });
+    setNewCoupon({ ...newCoupon, [name]: value }); // Cập nhật state khi người dùng nhập vào form
   };
 
+  // useEffect để gọi hàm fetchListCoupon khi component được render lần đầu
   useEffect(() => {
     fetchListCoupon();
   }, []);
 
+  // Hàm định dạng ngày tháng cho mã giảm giá
   const formatDate = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(date).toLocaleDateString(undefined, options);
@@ -123,15 +133,15 @@ const Coupons = ({ url }) => {
             <tbody>
               {coupons.map(coupon => (
                 <tr key={coupon._id}>
-                  <td>{coupon.code}</td>
-                  <td>{coupon.discount}</td>
-                  <td>{coupon.discountType === "percent" ? "%" : "VND"}</td>
-                  <td>{formatDate(coupon.expiryDate)}</td>
-                  <td>{coupon.minPurchase}</td>
-                  <td>{coupon.usageLimit}</td>
-                  <td>{coupon.usedCount}</td>
+                  <td>{coupon.code}</td> {/* Mã code của mã giảm giá */}
+                  <td>{coupon.discount}</td> {/* Giá trị giảm giá */}
+                  <td>{coupon.discountType === "percent" ? "%" : "VND"}</td> {/* Loại giảm giá */}
+                  <td>{formatDate(coupon.expiryDate)}</td> {/* Ngày hết hạn của mã giảm giá */}
+                  <td>{coupon.minPurchase}</td> {/* Mức chi tiêu tối thiểu */}
+                  <td>{coupon.usageLimit}</td> {/* Số lần sử dụng tối đa */}
+                  <td>{coupon.usedCount}</td> {/* Số lần đã sử dụng */}
                   <td>
-                    <button className="delete-btn" onClick={() => handleRemoveCoupon(coupon._id)}>Xóa</button>
+                    <button className="delete-btn" onClick={() => handleRemoveCoupon(coupon._id)}>Xóa</button> {/* Nút xóa mã giảm giá */}
                   </td>
                 </tr>
               ))}

@@ -4,7 +4,7 @@ import './CSS/ShopIntroduce/ShopIntroduce.css'
 import SearchNew from "../Components/News/SearchNew/SearchNew";
 import ShopNews from "../Components/News/ShopNews/ShopNews";
 
-const ShopIntroduce = () => {
+const ShopIntroduce = ({ category }) => {
   return (
     <div className="shopintroduce">
       <div className={style.news_header}>
@@ -18,7 +18,7 @@ const ShopIntroduce = () => {
 
       <div className="content-wrapper">
         <SearchNew/>
-        <ShopNews/>
+        <ShopNews category={category} />
       </div>
     </div>
   )

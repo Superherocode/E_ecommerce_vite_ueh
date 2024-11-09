@@ -4,7 +4,7 @@ import bcrypt from "bcrypt"
 import validator from "validator"
 
 
-// login user
+// đăng nhập user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {

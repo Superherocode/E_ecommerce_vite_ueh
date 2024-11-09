@@ -126,51 +126,27 @@ const User = ({ url }) => {
           <form>
             <div>
               <label>Họ và tên:</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleFormChange}
-                required
+              <input type="text" name="name" value={formData.name} onChange={handleFormChange} required
               />
             </div>
             <div>
               <label>Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleFormChange}
-                required
+              <input type="email" name="email" value={formData.email} onChange={handleFormChange} required
               />
             </div>
             <div>
               <label>Số điện thoại:</label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleFormChange}
-                required
+              <input type="text" name="phone" value={formData.phone} onChange={handleFormChange} required
               />
             </div>
             <div>
               <label>Ngày sinh:</label>
-              <input
-                type="date"
-                name="dateOfBirth"
-                value={formData.dateOfBirth}
-                onChange={handleFormChange}
-                required
+              <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleFormChange} required
               />
             </div>
             <div>
               <label>Giới tính:</label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleFormChange}
-                required
+              <select name="gender" value={formData.gender} onChange={handleFormChange} required
               >
                 <option value="nam">Nam</option>
                 <option value="nữ">Nữ</option>
