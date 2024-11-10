@@ -15,7 +15,7 @@ const HomeCategory = () => {
   };
 
   return (
-    <div>
+    <div className="homecategory">
       <div className="danh-muc-section">
         <h2 className="danh-muc-title">Danh mục sản phẩm</h2>
         <p className="danh-muc-subtitle">UEH - Đồng hành cùng bạn từ bữa ăn đến lớp học</p>

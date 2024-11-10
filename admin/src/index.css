@@ -39,12 +39,29 @@ hr{
 
 @media (max-width: 600px) {
   .app-content {
-    flex-direction: column;
     position: absolute;
   }
 
   .sidebar{
     position: relative;
     left: -100%;
+  }
+}
+
+/* Thêm */
+.app-content {
+  display: flex;
+  transition: margin-left 0.3s ease;
+}
+
+
+.sidebar-closed {
+  margin-left: 0; /* Không để khoảng trống khi sidebar đóng */
+}
+
+@media (max-width: 600px) {
+  .app-content {
+    position: relative;
+    flex-direction: column;
   }
 }

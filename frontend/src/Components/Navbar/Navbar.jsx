@@ -165,7 +165,7 @@ const Navbar = ({ setShowLogin }) => {
               </ul>
             )}
           </li>
-          <Link to="/khuyenmai"><li onClick={() => { setMenu("khuyenmai"); closeMobileMenu(); }}>Khuyễn mãi</li></Link>
+          <Link to="/khuyenmai"><li onClick={() => { setMenu("khuyenmai"); closeMobileMenu(); }}>Khuyến mãi</li></Link>
           <Link to="/tintuc"><li onClick={() => { setMenu("tintuc"); closeMobileMenu(); }}>Tin tức</li></Link>
         </ul>
       </div>

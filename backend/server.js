@@ -12,7 +12,7 @@ import couponRouter from "./routes/couponRouter.js"
 
 // app config
 const app = express()
-const prot = 4000
+const prot = process.env.PORT || 4000;
 
 
 // middleware

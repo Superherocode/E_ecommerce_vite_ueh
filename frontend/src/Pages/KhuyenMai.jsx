@@ -1,6 +1,6 @@
 import React from 'react'
 import style from "./CSS/ShopIntroduce/ShopIntroduce.module.css"
-import './CSS/khuyenmai/khuyenmai.css'
+import './CSS/KhuyenMai/khuyenmai.css'
 import SearchNew from '../Components/News/SearchNew/SearchNew'
 import ShopNews from '../Components/News/ShopNews/ShopNews'
 

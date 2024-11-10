@@ -1,23 +1,11 @@
-import React from 'react'
-import './Sidebar.css'
-import { assets } from '../../assets/assets'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import './Sidebar.css';
+import { assets } from '../../assets/assets';
+import { NavLink } from 'react-router-dom';
 
-const Sidebar = () => {
-  // const [showMenu, setShowMenu] = useState(false);
-
-  // const toggleMenu = () => {
-  //   setShowMenu(!showMenu);
-  // };
-
-  // const closeMenuOnMobile = () => {
-  //   if (window.innerWidth <= 1150) {
-  //     setShowMenu(false);
-  //   }
-  // };
-
+const Sidebar = ({ isOpen }) => {
   return (
-    <div className='sidebar'>
+    <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className='sidebar-options'>
         <NavLink to='/user' className='sidebar-option'>
           <img src={assets.user_icon} alt='' />
@@ -41,8 +29,7 @@ const Sidebar = () => {
         </NavLink>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Sidebar
+export default Sidebar;

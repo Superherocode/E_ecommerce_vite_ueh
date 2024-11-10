@@ -1,6 +1,18 @@
 .coupons {
-  margin: 60px auto;
-  width: 70%;
+  margin: 20px auto;
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .coupons {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .coupons {
+    width: 70%;
+  }
 }
 
 .coupon-manager {
@@ -50,6 +62,7 @@ h2 {
 
 .coupon-list {
   margin-top: 30px;
+  overflow-x: auto;
 }
 
 .coupon-list table {
@@ -86,4 +99,23 @@ h2 {
 
 .coupon-list .delete-btn:hover {
   background-color: #c82333;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .coupon-manager {
+    padding: 10px;
+  }
+
+  .add-coupon-form input,
+  .add-coupon-form select,
+  .add-coupon-form button {
+    font-size: 14px;
+  }
+
+  .coupon-list th,
+  .coupon-list td {
+    padding: 8px;
+    font-size: 14px;
+  }
 }
